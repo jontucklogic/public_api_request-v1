@@ -26,11 +26,11 @@ fetch('https://randomuser.me/api/?results=12')
 // Display Users To The UI
 function displayUsers(usersData) {
   users = usersData;
-
+  
   let userHTML = '';
 
   users.forEach((user, index) => {
-    const { picture: { large }, name: { first, last }, email, location: { city, state } } = user;
+    const { picture: {large}, name: {first, last}, email, location: {city, state} } = user;
 
     userHTML += `
       <div class="card" data-index="${index}">
@@ -51,7 +51,7 @@ function displayUsers(usersData) {
 
 // Display Modal
 function displayModal(index) {
-  let { picture: { large }, name: { first, last }, email, location: { city, state, street, postcode }, cell, dob } = users[index];
+  let { picture: {large}, name: {first, last}, email, location: {city, state, street, postcode}, cell, dob } = users[index];
 
   // Convert Cell # And Brithday To Correct Format
   cell = cell.replace(/-/g, '').replace(/^(\d{3})(\d{3})(\d{4})$/, '($1) $2-$3');
@@ -140,21 +140,21 @@ function modalToggle(index) {
 // User Search Filter
 document.querySelector('#search-input').addEventListener('keyup', (e) => {
   e.preventDefault();
-
+  
   if (e.target.value !== '') {
     const userValue = e.target.value.trim().toLowerCase();
     const usersOnDisplay = Array.from(gallery.querySelectorAll('.card'));
-
+    
     for (let i = 0; i < usersOnDisplay.length; i++) {
       const name = usersOnDisplay[i].querySelector('#name').textContent.toLowerCase();
-
+      
       if (!name.includes(userValue)) {
         usersOnDisplay[i].style.display = 'none';
 
       }
       else {
         usersOnDisplay[i].style.display = 'flex';
-
+    
       }
     }
 
